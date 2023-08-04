@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<div th:include="import/header :: header-content"></div>
+	<title>Library Management System</title>
+</head>
+<body>
+<div th:include="import/navbar :: navbar-content"></div>		
+	
+<section class="d-flex justify-content-center align-items-start mt-5">
+    <div th:if="${successMessage}" class="alert alert-success">
+        <p th:text="${successMessage}"></p>
+    </div>
+	<div class="card-container" th:each="book : ${books}">
+		<div class="card card-main m-5 p-5">
+			<div class="card-body">
+				<p><b>Title: <span th:text="${book.name}"></span></b></p>
+				<p><b><i>Genre: <span th:text="${book.genre}"></span></i></b></p>
+				<p>Author: <span th:text="${book.author}"></span> </p>
+				<p>Status: <span th:text="${book.status} ? 'Available' : 'Not Available'"></span> </p>
+				<br/><br/><br/><br/>
+				<div class="d-flex justify-content-center">
+					<form th:action="@{/books/rent/{id}(id = ${book.id})}">
+						<button class="btn btn-success" th:disabled="${book.status} == false">
+							Borrow
+						</button>
+					</form>
+					<form th:action="@{/books/return/{id}(id = ${book.id})}">
+						<button class="btn btn-success" th:disabled="${book.status} == true">
+							Return
+						</button>
+					</form>		
+				</div>
+			</div>
+		</div>	
+	</div>
+</section>
+</body>
+</html>

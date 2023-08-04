@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<div th:include="import/header :: header-content"></div>
+	<title>Books</title>
+</head>
+<body>
+
+<div th:include="import/navbar :: navbar-content"></div>	
+	
+<section class="d-flex justify-content-center"> 
+	<div>
+		<h4 class="text-center">Book history</h4>
+		
+	    <div th:if="${successMessage}" class="alert alert-success">
+	        <p th:text="${successMessage}"></p>
+	    </div>
+			
+		<table class = "table table-responsive">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Book Title</th>
+					<th>Genre</th>
+					<th>Author</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "history, iteration: ${bookHistories}">
+					<td th:text= "${iteration.count}"></td>
+					<td th:text = "${history.book.name}"></td>
+					<td th:text = "${history.book.genre}"></td>
+					<td th:text = "${history.book.author}"></td>
+					<td th:text = "${history.status} ? 'Borrowed' : 'Returned'"></td>
+				</tr>
+			</tbody>
+		
+		</table>
+	</div>
+	
+</section>
+	
+
+</body>
+</html>

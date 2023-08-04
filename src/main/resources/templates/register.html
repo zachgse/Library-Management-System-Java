@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Register</title>
+	<div th:include="import/header :: header-content"></div>
+</head>
+<body>
+	
+<div th:include="import/navbar :: navbar-content"></div>	
+
+<section class="d-flex justify-content-center align-items-center">
+	<div class="card card-form text-center">
+		<div class="card-header">
+			<h4 class="text-center">Register</h4>
+		</div>
+		<div class="card-body text-center p-5">
+			<form th:action="@{/register/store}" th:object="${user}" method="post">
+				<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Name</label>
+					<input class="form-control" name="name" th:field="*{name}">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Username</label>
+					<input class="form-control" name="username" th:field="*{username}">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Password</label>
+					<input class="form-control" name="password" th:field="*{password}">
+				</div>
+				<br/><br/><br/>
+				<button type="submit" class="btn btn-success pull-right mb-5">Submit</button>
+				<br/><br/><br/>
+			</form>
+		</div>
+	</div>
+</section>
+
+</body>
+</html>
